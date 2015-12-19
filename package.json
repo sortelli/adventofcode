@@ -1,6 +1,6 @@
 {
   "name": "adventofcode",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "My solutions for http://adventofcode.com",
   "main": "app/index.js",
   "scripts": {
@@ -27,9 +27,11 @@
     "gulp-babel-istanbul": "^0.11.0",
     "gulp-mocha": "^2.2.0",
     "gulp-sourcemaps": "^1.6.0",
-    "merge-stream": "^1.0.0"
+    "merge-stream": "^1.0.0",
+    "sinon": "^1.17.2"
   },
   "dependencies": {
-    "lodash": "^3.10.1"
+    "lodash": "^3.10.1",
+    "md5": "^2.0.0"
   }
 }
