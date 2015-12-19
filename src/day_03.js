@@ -13,23 +13,22 @@ let next_point = ([x, y], direction) => {
   throw new Error(`Unknown direction: ${direction}`)
 }
 
-let visit = (houses, direction) => {
-  let next = next_point(houses.current, direction)
+let count_houses = (directions, starting_points) => {
+  let houses = directions.split('').reduce((houses, direction) => {
+    let curr = houses.posistions[0]
+    let next = next_point(curr, direction)
 
-  return {
-    current: next,
-    visited: houses.visited.concat([point_key(next)])
-  }
+    return {
+      posistions: houses.posistions.slice(1).concat([next]),
+      visited:    houses.visited.concat([point_key(next)])
+    }
+  }, {
+    posistions: starting_points,
+    visited:    starting_points.map((point) => point_key(point))
+  })
+
+  return new Set(houses.visited).size
 }
 
-export let part1 = function(directions) {
-  let start  = [0, 0]
-  let houses = {
-    current: start,
-    visited: [point_key(start)]
-  }
-
-  return new Set(directions.split('').reduce(visit, houses).visited).size
-}
-
-export let part2 = () => null
+export let part1 = (directions) => count_houses(directions, [[0, 0]])
+export let part2 = (directions) => count_houses(directions, [[0, 0], [0, 0]])

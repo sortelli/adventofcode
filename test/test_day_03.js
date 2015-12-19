@@ -26,7 +26,7 @@ describe('Day 03', function() {
     });
 
     [
-      {input: '>',          output:  3},
+      {input: '^v',         output:  3},
       {input: '^>v<',       output:  3},
       {input: '^v^v^v^v^v', output: 11}
     ].forEach(({input: input, output: output}) => {
