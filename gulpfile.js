@@ -29,7 +29,7 @@ gulp.task('test', ['build'], function(done) {
       gulp.src('test/**/*.js')
         .pipe(mocha({reporter: 'spec'}))
         .on('error', function(err) {
-          console.log(err.message)
+          console.log(err.stack || err.message)
           if (in_test_watch)
             this.emit('end')
           else
