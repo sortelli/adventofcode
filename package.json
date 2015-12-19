@@ -1,6 +1,6 @@
 {
   "name": "adventofcode",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "My solutions for http://adventofcode.com",
   "main": "app/index.js",
   "scripts": {
