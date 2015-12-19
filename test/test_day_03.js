@@ -5,6 +5,10 @@ import * as day03 from '../src/day_03'
 
 describe('Day 03', function() {
   describe('Part 1', function() {
+    it('fails on bad input', () => {
+      expect(() => day03.part1('^X>')).to.throw('Unknown direction: X')
+    });
+
     [
       {input: '>',          output: 2},
       {input: '^>v<',       output: 4},
