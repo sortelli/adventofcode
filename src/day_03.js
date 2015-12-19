@@ -31,3 +31,5 @@ export let part1 = function(directions) {
 
   return new Set(directions.split('').reduce(visit, houses).visited).size
 }
+
+export let part2 = () => null
