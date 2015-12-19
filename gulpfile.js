@@ -20,7 +20,7 @@ gulp.task('build', function() {
 gulp.task('test', ['build'], function(done) {
   merge(
     gulp.src(['src/**/*.js'])
-      .pipe(istanbul({includeUntested: true}))
+      .pipe(istanbul({includeUntested: false}))
   ,
     gulp.src(['test/**/*.js'])
       .pipe(babel())

@@ -24,8 +24,8 @@ describe('Day 01', function() {
 
   describe('Part 2', function() {
     [
-      {input: ')',      output:  1},
-      {input: '(()())', output:  5}
+      {input: ')',     output:  1},
+      {input: '()())', output:  5}
     ].forEach(({input: input, output: output}) => {
       it(`passes ${input} => ${output}`, () => {
         expect(day01.part2(input)).to.equal(output)
