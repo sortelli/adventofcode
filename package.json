@@ -27,7 +27,8 @@
     "gulp-babel-istanbul": "^0.11.0",
     "gulp-mocha": "^2.2.0",
     "gulp-sourcemaps": "^1.6.0",
-    "merge-stream": "^1.0.0"
+    "merge-stream": "^1.0.0",
+    "sinon": "^1.17.2"
   },
   "dependencies": {
     "lodash": "^3.10.1",

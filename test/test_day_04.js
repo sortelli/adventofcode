@@ -2,31 +2,24 @@
 
 import { expect } from 'chai'
 import * as day04 from '../src/day_04'
+import sinon from 'sinon'
 
 describe('Day 04', function() {
-  describe('Part 1', function() {
-    this.timeout(10000);
-
-    [
-      {input: 'abcdef',  output:  609043},
-      {input: 'pqrstuv', output: 1048970}
-    ].forEach(({input: input, output: output}) => {
-      it(`passes ${input} => ${output}`, () => {
-        expect(day04.part1(input)).to.equal(output)
-      })
-    })
+  it('Part 1', function() {
+    let md5_stub = sinon.stub(day04.hasher, 'md5')
+    md5_stub.withArgs('abcdef12').returns('00000xyz')
+    md5_stub.returns('0xyz')
+    expect(day04.part1('abcdef')).to.equal(12)
+    expect(md5_stub.callCount).to.equal(12)
+    md5_stub.restore()
   })
 
-  describe('Part 2', function() {
-    this.timeout(10000);
-
-    [
-      {input: 'abcdef',  output: 6742839},
-      {input: 'pqrstuv', output: 5714438}
-    ].forEach(({input: input, output: output}) => {
-      it(`passes ${input} => ${output}`, () => {
-        expect(day04.part2(input)).to.equal(output)
-      })
-    })
+  it('Part 2', function() {
+    let md5_stub = sinon.stub(day04.hasher, 'md5')
+    md5_stub.withArgs('foo14').returns('000000xyz')
+    md5_stub.returns('00000xyz')
+    expect(day04.part2('foo')).to.equal(14)
+    expect(md5_stub.callCount).to.equal(14)
+    md5_stub.restore()
   })
 })
