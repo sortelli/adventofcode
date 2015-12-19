@@ -30,6 +30,7 @@
     "merge-stream": "^1.0.0"
   },
   "dependencies": {
-    "lodash": "^3.10.1"
+    "lodash": "^3.10.1",
+    "md5": "^2.0.0"
   }
 }
