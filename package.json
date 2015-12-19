@@ -1,0 +1,22 @@
+{
+  "name": "adventofcode",
+  "version": "0.1.0",
+  "description": "My solutions for http://adventofcode.com",
+  "main": "app/index.js",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sortelli/adventofcode.git"
+  },
+  "keywords": [
+    "adventofcode"
+  ],
+  "author": "Joe Sortelli",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sortelli/adventofcode/issues"
+  },
+  "homepage": "https://github.com/sortelli/adventofcode#readme"
+}
