@@ -24,3 +24,4 @@ console.log(`Day 03 part 2 solution: ${day03.part2(day_03_input)}`)
 
 let day_04_input = get_input('day_04_input.txt')
 console.log(`Day 04 part 1 solution: ${day04.part1(day_04_input)}`)
+console.log(`Day 04 part 2 solution: ${day04.part2(day_04_input)}`)

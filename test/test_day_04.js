@@ -16,4 +16,17 @@ describe('Day 04', function() {
       })
     })
   })
+
+  describe('Part 2', function() {
+    this.timeout(10000);
+
+    [
+      {input: 'abcdef',  output: 6742839},
+      {input: 'pqrstuv', output: 5714438}
+    ].forEach(({input: input, output: output}) => {
+      it(`passes ${input} => ${output}`, () => {
+        expect(day04.part2(input)).to.equal(output)
+      })
+    })
+  })
 })
