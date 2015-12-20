@@ -13,5 +13,8 @@ export let part1 = (strings) => {
 }
 
 export let part2 = (strings) => {
-  return count_nice(strings, (string) => false)
+  return count_nice(strings, (string) => {
+    return string.match(/(..).*\1/) &&
+           string.match(/(.).\1/)
+  })
 }
