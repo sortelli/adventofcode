@@ -51,3 +51,5 @@ let perform_command = (lights, command) => {
 export let part1 = (commands) => {
   return commands.split("\n").map(parse_command).reduce(perform_command, []).filter((x) => !!x).length
 }
+
+export let part2 = () => null
