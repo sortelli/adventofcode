@@ -19,4 +19,20 @@ describe('Day 05', function() {
       })
     })
   })
+
+  describe('Part 2', function() {
+    [
+      {input: 'qjhvhtzxzqqjkmpb',                          output: 1},
+      {input: 'xxyxx',                                     output: 1},
+      {input: 'uurcxstgmygtbstg',                          output: 0},
+      {input: 'ieodomkazucvgmuy',                          output: 0},
+      {input: "xxyxx\nuurcxstgmygtbstg",                   output: 1},
+      {input: "ieodomkazucvgmuy\nxxyxx\nxxyxx",            output: 2},
+      {input: "qjhvhtzxzqqjkmpb\nieodomkazucvgmuy\nxxyxx", output: 2}
+    ].forEach(({input: input, output: output}) => {
+      it(`passes ${util.inspect(input)} => ${output}`, () => {
+        expect(day05.part2(input)).to.equal(output)
+      })
+    })
+  })
 })
