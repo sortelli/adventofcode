@@ -53,3 +53,10 @@ export let eval_circuit = (circuit) => {
 }
 
 export let part1 = (circuit) => eval_circuit(circuit).a
+
+export let part2 = (circuit) => {
+  let a     = part1(circuit)
+  let wires = wire_circuit(circuit)
+  wires['b'] = () => a
+  return wires['a']()
+}
