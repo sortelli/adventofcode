@@ -6,6 +6,12 @@ import * as day06 from '../src/day_06'
 
 describe('Day 06', function() {
   describe('Part 1', function() {
+     this.timeout(10000);
+
+     it('throws exception on bad command', () => {
+       expect(() => day06.part1('foobar')).to.throw('Could not parse command: foobar')
+     });
+
      let a = 'turn on 0,0 through 999,999';
      let b = 'toggle 0,0 through 999,0';
      let c = 'turn off 499,499 through 500,500';
