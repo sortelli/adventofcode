@@ -54,4 +54,15 @@ describe('Day 07', function() {
       expect(day07.part1(input)).to.equal(72)
     })
   })
+
+  describe('Part 2', function() {
+    it('can rewire circuit', () => {
+      let input = `123 -> c
+                   456 -> b
+                   b AND c -> d
+                   NOT d -> a`
+
+      expect(day07.part2(input)).to.equal(65484)
+    })
+  })
 })
