@@ -6,27 +6,18 @@ let size = 1000
 
 let index_at_point = (x, y) => x * size + y
 
-let action = (name) => {
-  switch (name) {
-    case 'turn on':
-       return () => true
-    case 'turn off':
-       return () => false
-    default:
-       return (light) => !light
-  }
-}
+let parse_command = (action) => {
+  return (command) => {
+    let m = command.match(/(turn on|turn off|toggle)\s+(\d+),(\d+)\s+through\s+(\d+),(\d+)/)
 
-let parse_command = (command) => {
-  let m = command.match(/(turn on|turn off|toggle)\s+(\d+),(\d+)\s+through\s+(\d+),(\d+)/)
+    if (!m)
+      throw new Error('Could not parse command: ' + command)
 
-  if (!m)
-    throw new Error('Could not parse command: ' + command)
-
-  return {
-    action:  action(m[1]),
-    point_a: [parseInt(m[2], 10), parseInt(m[3], 10)],
-    point_b: [parseInt(m[4], 10), parseInt(m[5], 10)]
+    return {
+      action:  action(m[1]),
+      point_a: [parseInt(m[2], 10), parseInt(m[3], 10)],
+      point_b: [parseInt(m[4], 10), parseInt(m[5], 10)]
+    }
   }
 }
 
@@ -48,8 +39,29 @@ let perform_command = (lights, command) => {
   return lights
 }
 
-export let part1 = (commands) => {
-  return commands.split("\n").map(parse_command).reduce(perform_command, []).filter((x) => !!x).length
+let count_lights = (commands, actions) => {
+  return commands.split("\n")
+    .map(parse_command(actions))
+    .reduce(perform_command, [])
+    .reduce((sum, count) => sum + count)
 }
 
-export let part2 = () => null
+export let part1 = (commands) => {
+  return count_lights(commands, (name) => {
+    switch (name) {
+      case 'turn on':  return () => 1
+      case 'turn off': return () => 0
+      default:         return (light) => (light || 0) == 0 ? 1 : 0
+    }
+  })
+}
+
+export let part2 = (commands) => {
+  return count_lights(commands, (name) => {
+    switch (name) {
+      case 'turn on':  return (light) => (light || 0) + 1
+      case 'turn off': return (light) => { let l = (light || 0) - 1; return l < 0 ? 0 : l}
+      default:         return (light) => (light || 0) + 2
+    }
+  })
+}
