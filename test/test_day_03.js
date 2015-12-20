@@ -20,7 +20,7 @@ describe('Day 03', function() {
     })
   })
 
-  describe('Part 3', function() {
+  describe('Part 2', function() {
     it('fails on bad input', () => {
       expect(() => day03.part1('^X>')).to.throw('Unknown direction: X')
     });

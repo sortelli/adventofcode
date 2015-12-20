@@ -7,12 +7,14 @@ import * as day_01 from './day_01'
 import * as day_02 from './day_02'
 import * as day_03 from './day_03'
 import * as day_04 from './day_04'
+import * as day_05 from './day_05'
 
 let days = [
   day_01,
   day_02,
   day_03,
-  day_04
+  day_04,
+  day_05
 ]
 
 let get_input = function(file) {
