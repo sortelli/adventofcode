@@ -26,7 +26,7 @@ gulp.task('test', ['build'], function(done) {
       .pipe(babel())
   ).pipe(istanbul.hookRequire())
     .on('finish', function () {
-      gulp.src('test/**/*.js')
+      gulp.src(process.env.TEST_PATTERN || 'test/**/*.js')
         .pipe(mocha({reporter: 'spec'}))
         .on('error', function(err) {
           console.log(err.stack || err.message)
