@@ -26,3 +26,4 @@ let look_and_say_n = (str, count) => {
 }
 
 export let part1 = (str, count = 40) => look_and_say_n(str, count).length
+export let part2 = (str, count = 50) => part1(str, count)
