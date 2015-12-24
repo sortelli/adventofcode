@@ -15,7 +15,7 @@ describe('Day 11', function() {
       expect(day11.valid_password('ghjaabcc')).to.be.true
 
       expect(day11.part1('abcdefgh')).to.equal('abcdffaa')
-      expect(day11.part1('ghijklmn')).to.equal('ghjaabcc')
+      expect(day11.part1('ghjaaaaa')).to.equal('ghjaabcc')
     })
   })
 })
