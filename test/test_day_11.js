@@ -18,4 +18,10 @@ describe('Day 11', function() {
       expect(day11.part1('ghjaaaaa')).to.equal('ghjaabcc')
     })
   })
+
+  describe('Part 2', function() {
+    it('Calls part1 twice', () => {
+      expect(day11.part2('aabbc')).to.equal('bbcdd')
+    })
+  })
 })
