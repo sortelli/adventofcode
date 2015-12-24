@@ -26,3 +26,5 @@ export let part1 = (password) => {
       return password
   }
 }
+
+export let part2 = (password) => part1(part1(password))

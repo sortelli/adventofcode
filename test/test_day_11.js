@@ -20,6 +20,7 @@ describe('Day 11', function() {
   })
 
   describe('Part 2', function() {
+    this.timeout(10000)
     it('Calls part1 twice', () => {
       expect(day11.part2('aabbc')).to.equal('bbcdd')
     })
