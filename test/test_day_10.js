@@ -4,7 +4,7 @@ import { expect } from 'chai'
 import * as day10 from '../src/day_10'
 
 describe('Day 10', function() {
-  describe('Part 1', function() {
+  describe('Part 1 & 2', function() {
     [
       {input:      '1', output:     '11'},
       {input:     '11', output:     '21'},
@@ -15,6 +15,7 @@ describe('Day 10', function() {
       it(`passes ${input} => ${output}`, () => {
         expect(day10.look_and_say(input)).to.equal(output)
         expect(day10.part1('1', index + 1)).to.equal(output.length)
+        expect(day10.part2('1', index + 1)).to.equal(output.length)
       })
     })
   })
