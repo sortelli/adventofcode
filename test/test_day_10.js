@@ -14,7 +14,7 @@ describe('Day 10', function() {
     ].forEach(({input: input, output: output}, index) => {
       it(`passes ${input} => ${output}`, () => {
         expect(day10.look_and_say(input)).to.equal(output)
-        expect(day10.part1('1', index)).to.equal(output)
+        expect(day10.part1('1', index + 1)).to.equal(output.length)
       })
     })
   })
