@@ -27,4 +27,17 @@ describe('Day 12', function() {
       })
     })
   })
+
+  describe('Part 2', function() {
+    [
+      {input: '[1,2,3]',                         output: 6},
+      {input: '[1,{"c":"red","b":2},3]',         output: 4},
+      {input: '{"d":"red","e":[1,2,3,4],"f":5}', output: 0},
+      {input: '[1,"red",5]',                     output: 6}
+    ].forEach(({input: input, output: output}) => {
+      it(`passes ${input} => ${output}`, () => {
+        expect(day12.part2(input)).to.equal(output)
+      })
+    })
+  })
 })

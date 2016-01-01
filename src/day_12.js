@@ -12,3 +12,5 @@ export let sum_numbers = (obj) => {
 }
 
 export let part1 = (json) => sum_numbers(JSON.parse(json))
+
+export let part2 = () => null
