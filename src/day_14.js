@@ -50,3 +50,5 @@ export let internals = {
 export let part1 = (input, seconds = 2503) => {
   return internals.race_reindeers(parse_reindeers(input), seconds).distance
 }
+
+export let part2 = () => null
