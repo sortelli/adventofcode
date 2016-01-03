@@ -18,13 +18,14 @@ let parse_reindeers = (input) => {
       fly_time,
       sleep_time,
       state:    fly_time,
-      distance: 0
+      distance: 0,
+      score:    0
     }
   })
 }
 
 let next_state = (reindeers) => {
-  return _.map(reindeers, (reindeer) => {
+  let state = _.map(reindeers, (reindeer) => {
     let new_state
 
     if (reindeer.state > -reindeer.sleep_time + 1)
@@ -37,18 +38,32 @@ let next_state = (reindeers) => {
       distance: reindeer.distance + (reindeer.state > 0 ? reindeer.speed : 0)
     })
   })
+
+  let max_distance = _.max(_.pluck(state, 'distance'))
+
+  return _.map(state, (reindeer) => {
+    return _.assign({}, reindeer, {
+      score: reindeer.score + (reindeer.distance == max_distance ? 1 : 0)
+    })
+  })
 }
 
 export let internals = {
-  race_reindeers:  (initial_state, seconds) => {
+  race_reindeers:  (initial_state, seconds, winning_param) => {
     let state = _.reduce(Array(seconds), next_state, initial_state)
-    let max   = _.max(_.pluck(state, 'distance'))
-    return _.find(state, (reindeer) => reindeer.distance == max)
+    let max   = _.max(_.pluck(state, winning_param))
+    return _.find(state, (reindeer) => reindeer[winning_param] == max)
   }
 }
 
-export let part1 = (input, seconds = 2503) => {
-  return internals.race_reindeers(parse_reindeers(input), seconds).distance
+let race = (input, winning_param, seconds = 2503) => {
+  return internals.race_reindeers(parse_reindeers(input), seconds, winning_param)
 }
 
-export let part2 = () => null
+export let part1 = (input, seconds) => {
+  return race(input, 'distance', seconds).distance
+}
+
+export let part2 = (input, seconds) => {
+  return race(input, 'score', seconds).score
+}
