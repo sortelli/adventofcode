@@ -1,6 +1,7 @@
 'use strict'
 
 import { expect } from 'chai'
+import * as sinon from 'sinon'
 import * as day14 from '../src/day_14'
 
 describe('Day 14', function() {
@@ -11,7 +12,18 @@ describe('Day 14', function() {
     ].join("\n")
 
     it('passes sample input', () => {
-      expect(day14.part1(input)).to.equal(1120)
+      expect(day14.part1(input, 1000)).to.equal(1120)
+    })
+
+    it('defaults to asking for 2503 seconds', () => {
+      let race_stub = sinon.stub(day14.internals, 'race_reindeers').returns({distance: 3})
+      try {
+        expect(day14.part1(input)).to.equal(3)
+        expect(race_stub.calledOnce).to.be.true
+        expect(race_stub.calledWith(sinon.match.array, 2503)).to.be.true
+      } finally {
+        race_stub.restore()
+      }
     })
   })
 })
