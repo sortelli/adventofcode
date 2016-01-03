@@ -4,11 +4,16 @@ import _     from 'lodash'
 import perms from 'array-permutation'
 
 let permutate_people = (people) => Array.from(perms.permutation(Array.from(people)))
-let total_happiness  = (people, links) => {
+
+let get_happiness = (links, person_a, person_b) => {
+  return (links[[person_a, person_b]] || 0) + (links[[person_b, person_a]] || 0)
+}
+
+let total_happiness = (people, links) => {
   return _.reduce(people.slice(1).concat(people.slice(0, 1)), (prev, person) => {
     return {
       person: person,
-      sum:    prev.sum + links[[person, prev.person]] + links[[prev.person, person]]
+      sum:    prev.sum + get_happiness(links, person, prev.person)
     }
   },
     {person: people.slice(0, 1), sum: 0}
@@ -36,3 +41,6 @@ let max_happiness = (input) => {
 }
 
 export let part1 = (input) => max_happiness(input)
+export let part2 = (input) => {
+  return max_happiness(input + "\n_Me_ would gain 0 happiness units sitting next to _Me_.")
+}
