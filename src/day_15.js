@@ -49,12 +49,15 @@ export let all_recipes = (width, count) => {
   return new_recipes
 }
 
-export let part1 = (input) => {
+let max_cookie_score = (input, recipe_filter = (recipe, ingredients) => true) => {
   let ingredients = parse_ingredients(input)
   let recipes     = all_recipes(ingredients.length, 100)
   let params      = ['capacity', 'durability', 'flavor', 'texture']
 
-  return _.reduce(recipes, (max_score, recipe) => {
+  return _.filter(
+    recipes,
+    (recipe) => recipe_filter(recipe, ingredients)
+  ).reduce((max_score, recipe) => {
     let score = _.zip(..._.map(recipe, (count, index) => {
       let ingredient = ingredients[index]
       return _.map(params, (param) => ingredient[param] * count)
@@ -66,3 +69,11 @@ export let part1 = (input) => {
     return max_score > score ? max_score : score
   }, 0)
 }
+
+export let part1 = (input) => max_cookie_score(input)
+export let part2 = (input) => max_cookie_score(input, (recipe, ingredients) => {
+  return _.map(recipe, (count, index) => {
+    let ingredient = ingredients[index]
+    return ingredient.calories * count
+  }).reduce((sum, calories) => sum + calories) == 500
+})
