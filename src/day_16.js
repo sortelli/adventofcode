@@ -21,13 +21,26 @@ export let parse_aunts = (input) => {
   })
 }
 
-export let part1 = (input) => {
+let find_aunt = (input, comparator = {}) => {
   let aunts = parse_aunts(input)
+  let equal = (a, b) => a === b
 
   for (let i = 0; i < aunts.length; ++i) {
-    if (_.all(aunts[i], (value, name) => analysis[name] === value))
+    if (_.all(aunts[i], (value, name) => (comparator[name] || equal)(analysis[name], value)))
       return i + 1
   }
 }
 
-export let part2 = () => null
+export let part1 = (input) => find_aunt(input)
+
+export let part2 = (input) => {
+  let lt = (a, b) => a < b
+  let gt = (a, b) => a > b
+
+  return find_aunt(input, {
+    cats:        lt,
+    trees:       lt,
+    pomeranians: gt,
+    goldfish:    gt
+  })
+}
