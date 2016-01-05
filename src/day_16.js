@@ -29,3 +29,5 @@ export let part1 = (input) => {
       return i + 1
   }
 }
+
+export let part2 = () => null
