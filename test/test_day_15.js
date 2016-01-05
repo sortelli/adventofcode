@@ -27,4 +27,10 @@ describe('Day 15', function() {
       expect(day15.part1(input)).to.equal(62842880)
     })
   })
+
+  describe('Part 2', function() {
+    it('passes sample input', () => {
+      expect(day15.part2(input)).to.equal(57600000)
+    })
+  })
 })
