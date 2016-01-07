@@ -1,7 +1,5 @@
 'use strict'
 
-import util from 'util'
-
 let parse_input = (strings) => strings.split("\n").map((s) => s.trim())
 
 let size = (input, sizer) => input.map(sizer).reduce((sum, length) => sum + length)
