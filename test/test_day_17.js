@@ -16,6 +16,7 @@ describe('Day 17', function() {
   describe('Part 2', function() {
     it('passes sample input', () => {
       expect(day17.part2(input, 25)).to.equal(3)
+      expect(day17.part2("100\n50\n50\n140\n5\n5")).to.equal(2)
     })
   })
 })
