@@ -1,7 +1,6 @@
 'use strict'
 
-import util from 'util'
-import _    from 'lodash'
+import _ from 'lodash'
 
 let total = function(dimensions, feet_to_order) {
   return dimensions
