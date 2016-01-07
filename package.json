@@ -1,6 +1,6 @@
 {
   "name": "adventofcode",
-  "version": "0.16.0",
+  "version": "0.17.0",
   "description": "My solutions for http://adventofcode.com",
   "main": "app/index.js",
   "scripts": {
@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "array-permutation": "^0.2.0",
+    "js-combinatorics": "^0.5.0",
     "lodash": "^3.10.1",
     "md5": "^2.0.0"
   }
