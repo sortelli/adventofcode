@@ -13,3 +13,5 @@ let count_combinations = (containers, target) => {
 }
 
 export let part1 = (input, target = 150) => count_combinations(parse_containers(input), target)
+
+export let part2 = () => null
