@@ -19,4 +19,11 @@ describe('Day 18', function() {
       expect(day18.part1(input)).is.a('number')
     })
   })
+
+  describe('Part 2', function() {
+    it('passes sample input', () => {
+      expect(day18.part2(input, 5)).to.equal(17)
+      expect(day18.part2(input)).is.a('number')
+    })
+  })
 })

@@ -42,3 +42,5 @@ export let part1 = (input, steps = 100) => {
     .map((lights) => lights.filter(_.identity).length)
     .reduce((sum, count) => sum + count)
 }
+
+export let part2 = () => null
