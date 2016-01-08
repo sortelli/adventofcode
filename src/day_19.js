@@ -23,6 +23,29 @@ let run_replacements = ([start, replacements]) => {
   }).flatten().compact().uniq().value()
 }
 
+let dfs_reverse = (start, target, replacements, level = 0) => {
+  if (start === target)
+    return level
+
+  for (let [from, to] of replacements) {
+    let index = start.indexOf(to)
+
+    if (index >= 0) {
+      let next         = start.slice(0, index) + from  + start.slice(index + to.length)
+      let target_level = dfs_reverse(next, target, replacements, level + 1)
+
+      if (target_level)
+        return target_level
+    }
+  }
+}
+
 export let part1 = (input) => run_replacements(parse_replacements(input)).length
 
-export let part2 = () => null
+export let part2 = (input) => {
+  let [start, replacements] = parse_replacements(input)
+
+  return dfs_reverse(start, 'e', _.sortBy(replacements, ([from, to]) => {
+    return to.length
+  }).reverse())
+}
