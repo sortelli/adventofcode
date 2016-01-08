@@ -16,6 +16,7 @@ describe('Day 19', function() {
     it('passes sample input', () => {
       expect(day19.part1(input)).to.equal(4)
       expect(day19.part1(`${input}OHO`)).to.equal(7)
+      expect(day19.part1("Ha => Ho\na => o\n\nHa")).to.equal(1)
     })
   })
 })
