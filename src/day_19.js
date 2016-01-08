@@ -24,3 +24,5 @@ let run_replacements = ([start, replacements]) => {
 }
 
 export let part1 = (input) => run_replacements(parse_replacements(input)).length
+
+export let part2 = () => null
