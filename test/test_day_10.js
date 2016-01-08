@@ -1,6 +1,7 @@
 'use strict'
 
 import { expect } from 'chai'
+import * as sinon from 'sinon'
 import * as day10 from '../src/day_10'
 
 describe('Day 10', function() {
@@ -17,6 +18,21 @@ describe('Day 10', function() {
         expect(day10.part1('1', index + 1)).to.equal(output.length)
         expect(day10.part2('1', index + 1)).to.equal(output.length)
       })
+    })
+
+    it('has correct default arguments', () => {
+      let stub = sinon.stub(day10.internals, 'look_and_say_n').returns([1,2,3])
+      try {
+        expect(day10.part1('foobar')).to.equal(3)
+        expect(stub.calledOnce).to.be.true
+        expect(stub.calledWith('foobar', 40)).to.be.true
+        stub.reset()
+        expect(day10.part2('foobar')).to.equal(3)
+        expect(stub.calledOnce).to.be.true
+        expect(stub.calledWith('foobar', 50)).to.be.true
+      } finally {
+        stub.restore()
+      }
     })
   })
 })

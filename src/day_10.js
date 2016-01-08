@@ -18,12 +18,14 @@ export let look_and_say = (str) => {
   return data.output.join('')
 }
 
-let look_and_say_n = (str, count) => {
-  if (count == 1)
-    return look_and_say(str)
+export let internals = {
+  look_and_say_n: (str, count) => {
+    if (count == 1)
+      return look_and_say(str)
 
-  return look_and_say_n(look_and_say(str), count - 1)
+    return internals.look_and_say_n(look_and_say(str), count - 1)
+  }
 }
 
-export let part1 = (str, count = 40) => look_and_say_n(str, count).length
+export let part1 = (str, count = 40) => internals.look_and_say_n(str, count).length
 export let part2 = (str, count = 50) => part1(str, count)
