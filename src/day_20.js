@@ -22,3 +22,5 @@ export let part1 = (input) => {
 
   return house
 }
+
+export let part2 = () => null
