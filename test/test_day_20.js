@@ -1,6 +1,7 @@
 'use strict'
 
 import { expect } from 'chai'
+import sinon from 'sinon'
 import * as day20 from '../src/day_20'
 
 describe('Day 20', function() {
@@ -17,7 +18,7 @@ describe('Day 20', function() {
       {input: '130', output: 8, house: 9}
     ].forEach(({input, output, house}) => {
       it(`presents(${house}) => ${input}`, () => {
-        expect(day20.presents(house)).to.equal(parseInt(input, 10))
+        expect(day20.internals.presents(house)).to.equal(parseInt(input, 10))
       })
 
       it(`passes ${input} => ${output}`, () => {
@@ -39,12 +40,22 @@ describe('Day 20', function() {
       {input: '99',  output: 6, house: 9}
     ].forEach(({input, output, house}) => {
       it(`presents(${house}) => ${input}`, () => {
-        expect(day20.presents(house, 2)).to.equal(parseInt(input, 10))
+        expect(day20.internals.presents(house, 11, 2)).to.equal(parseInt(input, 10))
       })
 
       it(`passes ${input} => ${output}`, () => {
         expect(day20.part2(input, 2)).to.equal(output)
       })
+    })
+
+    it('has correct default arguments', () => {
+      let stub = sinon.stub(day20.internals, 'presents', () => 1000000)
+      try {
+        expect(day20.part2('12345')).to.equal(1)
+        expect(stub.calledWith(1, 11, 50)).to.be.true
+      } finally {
+        stub.restore()
+      }
     })
   })
 })
