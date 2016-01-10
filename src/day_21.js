@@ -61,15 +61,7 @@ let parse_boss = (input) => {
   return {hit_points, damage, armor}
 }
 
-export let player_will_win = ({player, boss}) => {
-  while (true) {
-    if ((boss   = attack(player, boss  )).hit_points <= 0) return true
-    if ((player = attack(boss,   player)).hit_points <= 0) return false
-  }
-}
-
-
-export let part1 = (input, hit_points = 100, shop = item_shop) => {
+let calc_costs = (input, hit_points = 100, shop = item_shop) => {
   let boss = parse_boss(input)
 
   return _(item_combinations(shop)).map((items) => {
@@ -81,6 +73,17 @@ export let part1 = (input, hit_points = 100, shop = item_shop) => {
 
     return {cost: _.sum(items, 'cost'), won: player_will_win({player, boss})}
   })
-  .filter('won')
-  .min('cost').cost
 }
+
+export let player_will_win = ({player, boss}) => {
+  while (true) {
+    if ((boss   = attack(player, boss  )).hit_points <= 0) return true
+    if ((player = attack(boss,   player)).hit_points <= 0) return false
+  }
+}
+
+export let part1 = (input, hit_points = 100, shop = item_shop) =>
+  calc_costs(input, hit_points, shop).filter('won').min('cost').cost
+
+export let part2 = (input, hit_points = 100, shop = item_shop) =>
+  calc_costs(input, hit_points, shop).reject('won').max('cost').cost
