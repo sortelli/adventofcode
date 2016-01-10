@@ -1,12 +1,15 @@
 'use strict'
 
-let shop = {
+import combinatorics from 'js-combinatorics'
+import _ from 'lodash'
+
+let item_shop = {
   weapons: [
-    {cost: 4, damage:  8, armor: 0}, //Dagger
-    {cost: 5, damage: 10, armor: 0}, //Shortsword
-    {cost: 6, damage: 25, armor: 0}, //Warhammer
-    {cost: 7, damage: 40, armor: 0}, //Longsword
-    {cost: 8, damage: 74, armor: 0}  //Greataxe
+    {cost:  8, damage: 4, armor: 0}, //Dagger
+    {cost: 10, damage: 5, armor: 0}, //Shortsword
+    {cost: 25, damage: 6, armor: 0}, //Warhammer
+    {cost: 40, damage: 7, armor: 0}, //Longsword
+    {cost: 74, damage: 8, armor: 0}  //Greataxe
   ],
   armor: [
     {cost:  13, damage: 0, armor: 1}, //Leather
@@ -25,6 +28,59 @@ let shop = {
   ]
 }
 
-export let player_will_win = () => null
+let damage_delt = (damage, armor) => damage > armor ? damage - armor : 1
 
-export let part1 = () => null
+let attack = (attacker, defender) => {
+  return {
+    hit_points: defender.hit_points - damage_delt(attacker.damage, defender.armor),
+    damage: defender.damage,
+    armor: defender.armor
+  }
+}
+
+let item_combinations = (shop) => {
+  let combos = []
+
+  shop.weapons.forEach((weapon) => {
+    [null].concat(shop.armor).forEach((armor) => {
+      combinatorics.combination(
+        [null, null].concat(shop.rings), 2
+      ).toArray().forEach((rings) => {
+        combos.push([weapon].concat([armor], rings))
+      })
+    })
+  })
+
+  return combos.map(_.compact)
+}
+
+let parse_boss = (input) => {
+  let [hit_points, damage, armor] = input.split("\n")
+    .map((s) => parseInt(s.replace(/.*: /, ''), 10))
+
+  return {hit_points, damage, armor}
+}
+
+export let player_will_win = ({player, boss}) => {
+  while (true) {
+    if ((boss   = attack(player, boss  )).hit_points <= 0) return true
+    if ((player = attack(boss,   player)).hit_points <= 0) return false
+  }
+}
+
+
+export let part1 = (input, hit_points = 100, shop = item_shop) => {
+  let boss = parse_boss(input)
+
+  return _(item_combinations(shop)).map((items) => {
+    let player = {
+      hit_points,
+      damage: _.sum(items, 'damage'),
+      armor:  _.sum(items, 'armor')
+    }
+
+    return {cost: _.sum(items, 'cost'), won: player_will_win({player, boss})}
+  })
+  .filter('won')
+  .min('cost').cost
+}

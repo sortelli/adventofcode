@@ -5,7 +5,7 @@ import * as day21 from '../src/day_21'
 
 describe('Day 21', function() {
   describe('Part 1', function() {
-    let input = "Hit Points: 12\nDamage: 8\nArmor: 2\n"
+    let input = "Hit Points: 12\nDamage: 7\nArmor: 2\n"
 
     it('returns a number', () => {
       expect(day21.part1(input)).is.a('number')
@@ -44,7 +44,7 @@ describe('Day 21', function() {
 
       expect(day21.player_will_win({
         player: {hit_points:  6, armor: 5, damage: 5},
-        boss:   {hit_points: 12, armor: 2, damage: 7}
+        boss:   {hit_points: 12, armor: 9, damage: 7}
       })).to.be.false
     })
   })
